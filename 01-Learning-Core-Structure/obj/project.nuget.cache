@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "pCYtqtpnGzdT34YXBlvFgl4ttiZZjRUPXBH70J/5XFUZ/8NtpJJ7LdFhVjAOIpfL+k7ROoMIYCzvkBy5fc711g==",
+  "success": true,
+  "projectFilePath": "/Users/vinicius.oliveira/projetos/C#/MicrosoftAPITutorial/01-Learning-Core-Structure/01-Learning-Core-Structure.csproj",
+  "expectedPackageFiles": [
+    "/Users/vinicius.oliveira/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/Users/vinicius.oliveira/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/Users/vinicius.oliveira/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "/Users/vinicius.oliveira/.nuget/packages/swashbuckle.aspnetcore.swagger/6.2.3/swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "/Users/vinicius.oliveira/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.2.3/swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "/Users/vinicius.oliveira/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.2.3/swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
