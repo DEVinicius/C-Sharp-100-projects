@@ -7,29 +7,37 @@ namespace _01_Learning_Core_Structure.Repository.Implementation {
     public class UserArray : IUser {
         private long Id = 1;
         private List<User> users = new List<User>();
-        public async Task<User> create(User user ) {
+        public Task<User> Create(User user ) {
             user.Id = this.Id;
             this.SetId(this.Id + 1);
 
             this.users.Add(user);
 
-            return user;
+            return Task.Run(() => user);
         }
 
-        public Task<User?> findByEmail(string _email){
+        public Task<User?> FindByEmail(string email){
             return Task.Run(() => {
-                return this.users.Find(x => x.Email.Equals(_email));
+                return this.users.Find(x => x.Email.Equals(email));
             });
         }
 
-        public async Task<List<User>> findAll() {
+        public Task<User?> FindById(long id)
+        {
+            return Task.Run(() =>
+            {
+                return this.users.Find(x => x.Id == id);
+            });
+        }
+
+        public async Task<List<User>> FindAll() {
             return await Task.Run(() => {
                 return this.users;
             });
         }
 
-        private void SetId(long _id) {
-            this.Id = _id;
+        private void SetId(long id) {
+            this.Id = id;
         }
     }
 }

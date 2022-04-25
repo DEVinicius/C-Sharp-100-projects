@@ -2,3 +2,6 @@
 /obj/Debug
 /obj/staticwebassets.pack.sentinel
 /obj/project.nuget.cache
+app.db
+app.db-shm
+app.db-wal

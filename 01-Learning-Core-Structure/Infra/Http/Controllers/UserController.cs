@@ -11,17 +11,33 @@ namespace _01_Learning_Core_Structure.Infra.Http.Controllers {
     [Route("/user")]
     public class UserController : ControllerBase {
         [HttpPost]
-        public async Task<IActionResult> CreateUser([FromServices] IUser _userRepository,UserDTO userDTO) {
-                var createUserService = new CreateUserService(_userRepository);
+        public async Task<IActionResult> CreateUser([FromServices] IUser userRepository,UserDTO userDto) {
+                var createUserService = new CreateUserService(userRepository);
 
-                User userCreated = await createUserService.execute(userDTO);
+                var userCreated = await createUserService.Execute(userDto);
 
                 return Ok(userCreated);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromServices] IUser _userRepository) {
-            return Ok(new List<User>());
+        public async Task<IActionResult> Get([FromServices] IUser userRepository)
+        {
+            var findAllUserService = new FindAllUserService(userRepository);
+            return Ok( await findAllUserService.Execute());
+        }
+
+        [HttpGet]
+        [Route("/user/{id}")]
+        public async Task<IActionResult> GetById(
+            [FromServices] IUser userRepository,
+            [FromRoute] long id
+        )
+        {
+            var findOneUserService = new FindOneUserService(userRepository);
+
+            var user = await findOneUserService.Execute(id);
+
+            return Ok(user);
         }
     }
 }

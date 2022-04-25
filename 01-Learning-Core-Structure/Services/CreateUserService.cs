@@ -5,28 +5,28 @@ using System.Threading.Tasks;
 
 namespace _01_Learning_Core_Structure.Services {
     public class CreateUserService {
-        private IUser userRepository;
+        private readonly IUser _userRepository;
 
-        public CreateUserService(IUser _userRepository) {
-            this.userRepository = _userRepository;
+        public CreateUserService(IUser userRepository) {
+            this._userRepository = userRepository;
         }
 
-        public async Task<User> execute(UserDTO userDTO) {
-            this.ensureEmailExists(userDTO.Email);
+        public async Task<User> Execute(UserDTO userDto) {
+            this.EnsureEmailExists(userDto.Email);
 
-            return await this.createUser(userDTO);
+            return await this.CreateUser(userDto);
         }
 
-        private void ensureEmailExists(string email) {
-            Task<User?> verifyUserExists = this.userRepository.findByEmail(email);
+        private void EnsureEmailExists(string email) {
+            var verifyUserExists = this._userRepository.FindByEmail(email);
 
             if(verifyUserExists.Result != null) {
                 throw new System.Exception("Email já inserido no sistema");
             }
         }
 
-        private async Task<User> createUser(UserDTO userDTO) {
-            User user = await this.userRepository.create(userDTO);
+        private async Task<User> CreateUser(User userDto) {
+            var user = await this._userRepository.Create(userDto);
 
             return user;
         }
