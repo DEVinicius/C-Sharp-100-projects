@@ -6,6 +6,9 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
+      - MONGO_INITDB_DATABASE=ManagerDb
+      - MONGO_INITDB_USERNAME=teste
+      - MONGO_INITDB_PASSWORD=teste@123
     volumes:
       - /Users/vinicius.oliveira/projetos/database/mongo:/data/db
     ports:

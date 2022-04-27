@@ -16,5 +16,6 @@ public class UserRepository : BaseRepository<User>, IUserRepository
 
     public UserRepository(IMongoClient client) : base(client)
     {
+        this._collection = this._mongoDatabase.GetCollection<User>(nameof(User));
     }
 }

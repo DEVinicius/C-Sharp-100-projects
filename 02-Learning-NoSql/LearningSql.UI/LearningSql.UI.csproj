@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LearningSql.Application\LearningSql.Application.csproj" />
     <ProjectReference Include="..\LearningSql.Infra\LearningSql.Infra.csproj" />
   </ItemGroup>
 
