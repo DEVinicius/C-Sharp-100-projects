@@ -8,7 +8,10 @@ public class UserRepository : BaseRepository<User>, IUserRepository
 {
     public Task<User> GetByEmail(string email)
     {
-        throw new NotImplementedException();
+        var filter = Builders<User>.Filter.Eq(c => c.Email, email);
+        var data = _collection.Find(filter).FirstOrDefaultAsync();
+
+        return data;
     }
 
     public UserRepository(IMongoClient client) : base(client)

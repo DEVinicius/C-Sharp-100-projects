@@ -7,4 +7,10 @@ public class Base
 {
     [BsonId]
     public ObjectId Id { get; set; }
+    public DateTime CreatedAt { get; set; }
+
+    public Base()
+    {
+        this.CreatedAt = DateTime.Now;
+    }
 }

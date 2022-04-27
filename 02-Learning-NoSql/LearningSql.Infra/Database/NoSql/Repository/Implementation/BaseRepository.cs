@@ -8,7 +8,7 @@ namespace LearningSql.Infra.Database.NoSql.Repository.Implementation;
 public class BaseRepository<T> : IBaseRepository<T> where T:Base
 {
     private readonly IMongoDatabase _mongoDatabase;
-    private readonly IMongoCollection<T> _collection;
+    protected readonly IMongoCollection<T> _collection;
 
     public BaseRepository(IMongoClient client)
     {
