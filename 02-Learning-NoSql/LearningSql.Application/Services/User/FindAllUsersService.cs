@@ -11,8 +11,8 @@ public class FindAllUsersService
         this._userRepository = userRepository;
     }
 
-    public async Task Execute()
+    public async Task<List<Domain.Entities.User>> Execute()
     {
-        
+        return await this._userRepository.Get();
     }
 }

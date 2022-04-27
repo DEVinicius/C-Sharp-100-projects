@@ -6,10 +6,12 @@ namespace LearningSql.Domain.Entities;
 public class Base
 {
     [BsonId]
-    public ObjectId Id { get; set; }
-    public DateTime CreatedAt { get; set; }
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string? Id { get; set; }
 
-    public Base()
+    private DateTime CreatedAt { get; set; }
+
+    protected Base()
     {
         this.CreatedAt = DateTime.Now;
     }

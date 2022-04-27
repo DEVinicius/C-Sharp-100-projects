@@ -10,7 +10,10 @@ public class DeleteUserService
     {
         this._userRepository = userRepository;
     }
-    
-    public async Task Execute(){}
+
+    public async Task Execute(string id)
+    {
+        await this._userRepository.Delete(id);
+    }
 
 }

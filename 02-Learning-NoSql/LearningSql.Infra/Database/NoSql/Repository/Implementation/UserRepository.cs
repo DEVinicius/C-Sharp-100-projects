@@ -13,6 +13,27 @@ public class UserRepository : BaseRepository<User>, IUserRepository
 
         return data;
     }
+    
+    public override async Task<bool> Update(string id, User obj)
+    {
+        obj.Id = id;
+
+        var actualUser = await this.Get(id);
+
+        if (obj.Email == null)
+        {
+            obj.Email = actualUser.Email;
+        }
+        
+        if (obj.Name == null)
+        {
+            obj.Name = actualUser.Name;
+        }
+
+        var result = await this._collection.ReplaceOneAsync(x => x.Id == id, obj);
+
+        return result.ModifiedCount == 1;
+    }
 
     public UserRepository(IMongoClient client) : base(client)
     {

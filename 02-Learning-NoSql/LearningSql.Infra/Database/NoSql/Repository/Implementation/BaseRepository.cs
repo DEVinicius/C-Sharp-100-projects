@@ -13,7 +13,6 @@ public class BaseRepository<T> : IBaseRepository<T> where T:Base
     public BaseRepository(IMongoClient client)
     {
         this._mongoDatabase = client.GetDatabase("ManagerDb");
-        this._collection = this._mongoDatabase.GetCollection<T>(nameof(T));
     }
 
     public virtual async Task<T> Create(T obj)
@@ -23,17 +22,16 @@ public class BaseRepository<T> : IBaseRepository<T> where T:Base
         return obj;
     }
 
-    public virtual async Task<bool> Update(ObjectId id, T obj)
+    public virtual async Task<bool> Update(string id, T obj)
     {
-        var filter = Builders<T>.Filter.Eq(c => c.Id, id);
-        var update = Builders<T>.Update
-            .Set(c => c, obj);
-        var result = await _collection.UpdateOneAsync(filter, update);
+        obj.Id = id;
+
+        var result = await this._collection.ReplaceOneAsync(x => x.Id == id, obj);
 
         return result.ModifiedCount == 1;
     }
 
-    public virtual Task<T?> Get(ObjectId id)
+    public virtual Task<T?> Get(string id)
     {
         var filter = Builders<T>.Filter.Eq(c => c.Id, id);
         var data = _collection.Find(filter).FirstOrDefaultAsync();
@@ -46,7 +44,7 @@ public class BaseRepository<T> : IBaseRepository<T> where T:Base
         return await this._collection.Find(_ => true).ToListAsync();
     }
 
-    public virtual async Task Delete(ObjectId id)
+    public virtual async Task Delete(string id)
     {
         var filter = Builders<T>.Filter.Eq(c => c.Id, id);
         var result = await _collection.DeleteOneAsync(filter);
