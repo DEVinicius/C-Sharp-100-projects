@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using _01_Learning_Core_Structure.Infra.Database.Model;
 using System.Threading.Tasks;
 using _01_Learning_Core_Structure.Infra.Database.DTO;
+using _01_Learning_Core_Structure.Infra.Database.Model;
 using _01_Learning_Core_Structure.Services;
 using _01_Learning_Core_Structure.Repository;
-using _01_Learning_Core_Structure.Repository.Implementation;
 
 namespace _01_Learning_Core_Structure.Infra.Http.Controllers {
     [ApiController]
@@ -38,6 +37,31 @@ namespace _01_Learning_Core_Structure.Infra.Http.Controllers {
             var user = await findOneUserService.Execute(id);
 
             return Ok(user);
+        }
+        
+        [HttpDelete]
+        [Route("/user/{id}")]
+        public void Delete(
+            [FromServices] IUser userRepository,
+            [FromRoute] long id
+        )
+        {
+            var deleteUserService = new DeleteUserService(userRepository);
+
+            deleteUserService.Execute(id);
+        }
+
+        [HttpPut]
+        [Route("/user/{id}")]
+        public async Task<IActionResult> Update(
+            [FromServices] IUser userRepository,
+            [FromRoute] long id,
+            [FromBody] User user
+        )
+        {
+            var updateUserService = new UpdateUserService(userRepository);
+
+            return Ok( await updateUserService.Execute(id, user));
         }
     }
 }

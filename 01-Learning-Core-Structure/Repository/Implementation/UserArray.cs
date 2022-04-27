@@ -18,7 +18,8 @@ namespace _01_Learning_Core_Structure.Repository.Implementation {
 
         public Task<User?> FindByEmail(string email){
             return Task.Run(() => {
-                return this.users.Find(x => x.Email.Equals(email));
+                var user = this.users.Find(x => x.Email.Equals(email));
+                return user;
             });
         }
 
@@ -34,6 +35,16 @@ namespace _01_Learning_Core_Structure.Repository.Implementation {
             return await Task.Run(() => {
                 return this.users;
             });
+        }
+
+        public Task<User> Update(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(long id)
+        {
+            this.users.Remove(this.FindById(id).Result);
         }
 
         private void SetId(long id) {

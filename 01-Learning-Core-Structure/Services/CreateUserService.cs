@@ -7,7 +7,8 @@ namespace _01_Learning_Core_Structure.Services {
     public class CreateUserService {
         private readonly IUser _userRepository;
 
-        public CreateUserService(IUser userRepository) {
+        public CreateUserService(IUser userRepository)
+        {
             this._userRepository = userRepository;
         }
 
